@@ -1,16 +1,10 @@
 ************************************
-Doctor Id : 1000
+Doctor Id : #1000
 Doctor Name : ROSHAN K
-Doctor Specialization : LINICAL PATHOLOGY
-Doctor Salary : 0
-************************************************************************
-Doctor Id : 1001
-Doctor Name : ATHUL PETER
-Doctor Specialization : ERMATOLOGY
-Doctor Salary : 0
-************************************************************************
-Doctor Id : 1003
-Doctor Name : GILBERT
-Doctor Specialization : ENT
-Doctor Salary : 0
+Doctor Specialization : ORTHO
+Doctor Salary : 35000.000000
+Doctor Mobile No : 6487112
+Doctor Address : KUTIYATH(H),EKM.
+Doctor Designation : ASDAS
+Doctor type : 1
 ************************************
