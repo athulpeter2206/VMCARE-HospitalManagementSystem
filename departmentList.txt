@@ -1,0 +1,7 @@
+************************************101
+Department Id : 101
+Department Name : PHARMACY DEPARTMENT
+************************************102
+Department Id : 102
+Department Name : RADIOLOGY DEPARTMENT
+************************************

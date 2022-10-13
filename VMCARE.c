@@ -14,6 +14,11 @@ struct employee{
 	int empType;
 	char specialization[45];
 	double salary;
+	int deptNo;
+};
+struct department{
+	int deptNo;
+	char deptName[35];
 };
 //void empIdGeneration(){
 //	
@@ -35,10 +40,41 @@ struct employee{
 //	
 //}
 
+void addDepartment(){
+	
+	struct department dept;
+	
+	printf("\nEnter the department Id:");
+	scanf("%d",&dept.deptNo);
+	printf("\nEnter the Department Name:");
+	getchar();
+	gets(dept.deptName);
+	
+	FILE *fp;
+	fp=fopen("departmentList.txt","a+");
+	fprintf(fp,"%d",dept.deptNo);
+	fprintf(fp,"\n");
+  	fprintf(fp,"Department Id : ");
+  	fprintf(fp,"%d",dept.deptNo);
+  	fprintf(fp,"\n");
+  	fprintf(fp,"Department Name : ");
+  	fprintf(fp,"%s",dept.deptName);
+  	fprintf(fp,"\n");
+  	fprintf(fp,"************************************");
+  	
+  	fclose(fp);
+  	
+  	printf("\nDepartment Added Successfully!");
+  	sleep(5);
+  	system("cls");
+	
+	
+}
+
 void addDoctor(){
 	
 	struct employee emp;
-	printf("\nEnter the Doctor Id: #");
+	printf("\nEnter the Doctor Id: ");
 	scanf("%d",&emp.empId);
 	printf("\nEnter the Doctor Name: ");
 	getchar();
@@ -52,15 +88,17 @@ void addDoctor(){
 	printf("\nEnter the Address: ");
 	getchar();
 	gets(emp.address);
+	printf("\nEnter the Department Id: ");
+	scanf("%d",&emp.deptNo);
 	emp.empType=1;
 
 		
 	//to insert into the employee list File
 	FILE *fp;
   	fp= fopen("employeeList.txt","a+");
-  	
+  	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
-  	fprintf(fp,"Employee Id : #");
+  	fprintf(fp,"Employee Id : ");
   	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
   	fprintf(fp,"Employee Name : ");
@@ -81,6 +119,9 @@ void addDoctor(){
 	fprintf(fp,"Employee type : ");
   	fprintf(fp,"%d",emp.empType);
   	fprintf(fp,"\n");
+  	fprintf(fp,"department Id : ");
+  	fprintf(fp,"%d",emp.deptNo);
+  	fprintf(fp,"\n");
   	fprintf(fp,"************************************");
   	
   	fclose(fp);
@@ -88,9 +129,9 @@ void addDoctor(){
 	//to write into the doctorsList File
 	
   	fp= fopen("doctorsList.txt","a+");
-  	
+  	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
-  	fprintf(fp,"Doctor Id : #");
+  	fprintf(fp,"Doctor Id : ");
   	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
   	fprintf(fp,"Doctor Name : ");
@@ -111,12 +152,15 @@ void addDoctor(){
 	fprintf(fp,"Doctor type : ");
   	fprintf(fp,"%d",emp.empType);
   	fprintf(fp,"\n");
+  	fprintf(fp,"Doctor department Id : ");
+  	fprintf(fp,"%d",emp.deptNo);
+  	fprintf(fp,"\n");
   	fprintf(fp,"************************************");
   	
   	fclose(fp);
   	
   	printf("\nDoctor Added Successfully!");
-  	sleep(5000);
+  	sleep(5);
   	system("cls");
 }
 
@@ -138,13 +182,15 @@ void addEmployee(){
 	getchar();
 	gets(emp.address);
 	emp.empType=3;
+	printf("\nEnter the Employee Department No: ");
+	scanf("%d",&emp.deptNo);
 	
 	//to insert into the employee list File
 	FILE *fp;
   	fp= fopen("employeeList.txt","a+");
-  	
+  	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
-  	fprintf(fp,"Employee Id : #");
+  	fprintf(fp,"Employee Id : ");
   	fprintf(fp,"%d",emp.empId);
   	fprintf(fp,"\n");
   	fprintf(fp,"Employee Name : ");
@@ -165,12 +211,15 @@ void addEmployee(){
 	fprintf(fp,"Employee type : ");
   	fprintf(fp,"%d",emp.empType);
   	fprintf(fp,"\n");
+	fprintf(fp,"Employee dept No : ");
+  	fprintf(fp,"%d",emp.deptNo);
+  	fprintf(fp,"\n");
   	fprintf(fp,"************************************");
   	
   	fclose(fp);
   	
   	printf("\nEmployee Added Successfully!");
-  	sleep(5000);
+  	sleep(5);
   	system("cls");
   	
 	
@@ -214,12 +263,30 @@ void dispEmp(){
 	}
 }
 
+void dispDepartment(){
+	char ch;
+	FILE *fp;
+	fp= fopen("departmentList.txt","r");
+	int c = getc(fp);
+	while(c!=EOF){
+		putchar(c);
+		c=getc(fp);
+	}
+	fclose(fp);
+	printf("\nDo you want to Clear Screen:Y/N");
+	getchar();
+	scanf("%c",&ch);
+	if(ch=='Y' || ch=='y'){
+		system("cls");
+	}
+}
+
 void mainMenu(int usertype){
 	int ch;
-	if(usertype==1){
+	if(usertype==1){ //MENU FOR ADMIN ACTIONS
 		do{
 		printf("************WELCOME TO VM CARE************");
-		printf("\n1.Add Doctor\n2.Add Employees\n3.View Doctors\n4.View Employees\n5.Add Department\n6.Logout\nEnter your Choice: ");
+		printf("\n1.Add Doctor\n2.Add Employees\n3.View Doctors\n4.View Employees\n5.Add Department\n6.View Departments\n7.Logout\nEnter your Choice: ");
 		scanf("%d",&ch);
 		switch(ch){
 			case 1:
@@ -245,14 +312,20 @@ void mainMenu(int usertype){
 			case 5:
 				system("cls");
 				printf("**************ADD DEPARTMENT****************\n");
+				addDepartment();
 			break;
 			case 6:
+				system("cls");
+				printf("**************VIEW DEPARTMENT****************\n");
+				dispDepartment();
+			break;
+			case 7:
 				system("cls");
 				login();
 			break;	
 				
 		}
-		}while(ch!=7);
+		}while(ch!=8);
 	}
 	
 }
@@ -281,7 +354,6 @@ void login(){
 	}
 	
 }
-
 
 void main(){
 	

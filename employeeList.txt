@@ -1,18 +1,19 @@
-***********************************
-Employee Id : #1000
+***********************************1000
+Employee Id : 1000
 Employee Name : ROSHAN K
-Employee Specialization : ORTHO
-Employee Salary : 35000.000000
-Employee Mobile No : 6487112
-Employee Address : KUTIYATH(H),EKM.
-Employee Designation : ASDAS
-Employee type : 1
-************************************
-Employee Id : #1001
-Employee Name : CHRISTO
-Employee Specialization : XRAY TECHNICIAN
-Employee Salary : 25000.000000
+Employee Specialization : CLINICAL PATHOLOGY
+Employee Salary : 35060.000000
 Employee Mobile No : 6487144
-Employee Address : KELOTH HOUSE,EKM
+Employee Address : KELOTH HOUSE,KOCHI-06
+Employee type : 1
+department Id : 101
+************************************1001
+Employee Id : 1001
+Employee Name : KIRAN T
+Employee Specialization : PHARMACIST
+Employee Salary : 20000.000000
+Employee Mobile No : 6487144
+Employee Address : ST.PATRIC VILLA,KOCHI.
 Employee type : 3
+Employee dept No : 101
 ************************************
