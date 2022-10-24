@@ -1,11 +1,2 @@
-************************************
-1000
-Doctor Id : 1000
-Doctor Name : ROSHAN K
-Doctor Specialization : CLINICAL PATHOLOGY
-Doctor Salary : 35060.000000
-Doctor Mobile No : 6487144
-Doctor Address : KELOTH HOUSE,KOCHI-06
-Doctor type : 1
-Doctor department Id : 101
-************************************
+1000|ROSHAN K|ORTHO|35000.000000|6487112|KUTIYATH(H),EKM.|1|101
+1002|REYVANTH|ENDOCRINOLOGY|57841.000000|6618216|ST.PATRICK ROAD,KOCHI-65|2|103
