@@ -48,25 +48,6 @@ struct docQueue{
 struct docQueue *temp1;
 struct docQueue *front1=NULL,*rear1=NULL,*front2=NULL,*rear2=NULL;
 
-//void empIdGeneration(){
-//	
-//	FILE *fp;
-//	int empId;
-//	fp=fopen("employeeList.txt","r");
-//	if(fp=='null'){
-//		printf("\nError File Missing!");
-//	}
-//	else{
-//		while(!feof(fp)){
-//			
-//			fscanf(fp,"%d",empId);
-//			if()
-//			
-//		}
-//	}
-//	
-//	
-//}
 void addDepartment(){
 	
 	struct department dept;
@@ -256,9 +237,6 @@ void addPatient(){
   	fprintf(fp,"%s",pti.emergencyContactNo);
 
   	fclose(fp);
-  	
-  	//FILE *fp;
-	//int docId[10],count=0,i=-1,j;
   	
 	printf("\nPatient Added Successfully Currently in Doctor's Queue'!");
   	sleep(5);
@@ -572,7 +550,7 @@ void dispPatient(){
 	int i=-1;
 	fp=fopen("patientList.txt","r");
 	if(fp==NULL){
-		printf("\nCannot Open Doctors File!");	
+		printf("\nCannot Open Patient File!");	
 	}
 	else{
 		char str[300];
@@ -606,10 +584,67 @@ void dispPatient(){
 	}
 }
 
+void dispPatientWithID(){
+	
+	FILE *fp;
+	int patid,count=0,i=-1,j;
+	struct patient pat[15];
+	printf("\nEnter the Patient Id to search:");
+	scanf("%d",&patid);
+	getchar();
+
+	fp=fopen("patientList.txt","r");
+	if(fp==NULL){
+		printf("\nCannot Open File!");	
+	}
+	else{
+
+		char str[300];
+		while(fgets(str,300,fp)){
+				//this loop for reading each line
+			char *token = strtok(str, "|");
+			i++;		
+			pat[i].patientId=atoi(token);
+			token = strtok(NULL, "|");	
+			strcpy(pat[i].patientName,token);
+			token = strtok(NULL, "|");	
+			strcpy(pat[i].address,token);
+			token = strtok(NULL, "|");
+			strcpy(pat[i].bloodGroup,token);	
+			token = strtok(NULL, "|");	
+			strcpy(pat[i].mobileNo,token);
+			token = strtok(NULL, "|");
+			pat[i].doctorId=atoi(token);
+			token = strtok(NULL, "|");
+			pat[i].precriptionId=atoi(token);
+			token = strtok(NULL, "|");
+			strcpy(pat[i].emergencyContactNo,token);
+			token = strtok(NULL, "|");											
+	}
+	fclose(fp);	
+	count=0;			//for searching the element in structure
+	for(j=0;j<=i;j++){
+			
+		if(pat[j].patientId==patid){
+			printf("\nPatient Found!");
+			printf("\nPatientId: %d",pat[j].patientId);
+			printf("\nPatientName: %s\n",pat[j].patientName);
+			printf("\nPatientAddress: %s\n",pat[j].address);
+			count++;
+		}
+	}
+	if(count==0){
+		printf("\nPatient ID %d Not Found!",patid);
+	}
+	
+	
+	}
+}
+
 void viewPatientsAllotted(){
 	if(userType==3){
 		if(front1==NULL){
-			printf("\nEmpty Queue");
+			printf("\nEmpty Queue\n");
 		}	
 		else{
 			temp1=front1;
@@ -630,7 +665,7 @@ void viewPatientsAllotted(){
 	}
 	if(userType==4){
 		if(front2==NULL){
-			printf("\nEmpty Queue");
+			printf("\nEmpty Queue\n");
 		}	
 		else{
 			temp1=front2;
@@ -677,7 +712,7 @@ void admitPatient(){
 	int i=-1,j;
 	if(userType==3){
 		if(front1==NULL){
-			printf("\nEmpty Queue");
+			printf("\nEmpty Queue\n");
 		}	
 		else{
 			patientId=front1->patientId;
@@ -908,8 +943,9 @@ void mainMenu(int usertype){
 		system("cls");
 		do{
 			printf("************WELCOME TO VM CARE************");
-			printf("\n1.Add Patient\n2.Update Patient\n3.Display Patients\n4.Logout\nEnter your Choice: ");
+			printf("\n1.Add Patient\n2.Update Patient\n3.Display Patients\n4.Search Patient Details\n5.Logout\nEnter your Choice: ");
 			scanf("%d",&ch);
+			getchar();
 			switch(ch){
 				case 1:
 					system("cls");
@@ -925,8 +961,13 @@ void mainMenu(int usertype){
 					system("cls");
 					printf("**************DISPLAY PATIENT****************\n");
 					dispPatient();
-				break;	
+				break;
 				case 4:
+					system("cls");
+					printf("**************SEARCH PATIENT****************\n");
+					dispPatientWithID();
+				break;
+				case 5:
 					system("cls");
 					login();
 				break;							
@@ -1016,25 +1057,24 @@ void login(){
             printf("* \b");
         }
     }
-	printf("%s, %s", username,pwd);
-	if(strcmp(username,"ADMIN45")==0 && strcmp(pwd,"PASS123")==0){
+	if(strcmp(username,"admin")==0 && strcmp(pwd,"admin")==0){
 		system("cls");
 		printf("************WELCOME TO VM CARE************");
 		printf("\nWelcome Admin");
 		userType=1;
 		mainMenu(userType);
 	}
-	else if(strcmp(username,"emp454")==0 && strcmp(pwd,"emp454")==0){
+	else if(strcmp(username,"emp")==0 && strcmp(pwd,"emp")==0){
 		printf("Welcome Employee454");
 		userType=2;
 		mainMenu(userType);
 	}
-	else if(strcmp(username,"doc1000")==0 && strcmp(pwd,"doc55")==0){
+	else if(strcmp(username,"doc1000")==0 && strcmp(pwd,"doc1000")==0){
 		printf("Welcome Dr.Roshan K");
 		userType=3;
 		mainMenu(userType);
 	}
-	else if(strcmp(username,"doc1002")==0 && strcmp(pwd,"doc22")==0){
+	else if(strcmp(username,"doc1002")==0 && strcmp(pwd,"doc1002")==0){
 		printf("Welcome Dr.Reyvanth K");
 		userType=4;
 		mainMenu(userType);
